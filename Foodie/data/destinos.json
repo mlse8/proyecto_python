@@ -44,7 +44,7 @@
   {
     "id": 4,
     "nombre": "Jing Du",
-    "tipo_cocina": "Asiatica",
+    "tipo_cocina": "Asiática",
     "ingredientes": ["arroz", "soja", "pescado", "fideos"],
     "precio_minimo": 1200,
     "precio_maximo": 4000,

@@ -430,6 +430,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
         self.cargar_datos_json()
         self.cargar_datos_json_en_reviews()
         self.cargar_datos_json_en_actividades()
+        self.cargar_usuarios()
 
     def mostrar_frame_por_nom(self, nombre_frame):
         """Funcion encargada de mostrar los frames que seleccione a traves de los botones que tengo ubicados 
@@ -924,8 +925,8 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
         calificacion = self.menu_estre_revie.get()
 
         if not destino or not resena or calificacion == "Puntuacion":
-            # Mostrar un mensaje de error o hacer alguna validación adicional si es necesario
-            return
+            messagebox.showerror("Error", "Complete los campos")
+
 
         nueva_resena = {
             "id": self.user_id_iniciado,
