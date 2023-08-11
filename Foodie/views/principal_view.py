@@ -1,15 +1,12 @@
 import os # para acceder al path y obtener las rutas
 import customtkinter # importa el cusotmtkinter
-import uuid
+import uuid # importo una libreria para usarun id generado
 from tkintermapview import TkinterMapView # importa las utilidades necesarias para el mapa
-from PIL import Image, ImageTk # con esto podes manipular imagenes
+from PIL import Image, ImageTk # con esto manipulo las imagenes
 from tkinter import messagebox # importa las ventanas de mensajes emergentes
 import tkinter as tk # importa tkinter para alguna que otra funcion
 import json # Importa json para la manipulacion de los archivos
-from datetime import datetime
-
-#from models.logsign import Logsign
-
+from datetime import datetime # importo la libreria datetime para manipular fechas
 
 # Obtengo todas las direcciones necesarias (imagenes y jsons)
 direccion_actual = os.path.dirname(os.path.abspath(__file__))
@@ -76,7 +73,6 @@ class App():
         self.user_id_iniciado = ""
         self.user_iniciado = ""
 
-        # Cosa sucia para tener all en al misma ventana
         # Cargo la imagen del logo desde assets para usarla despues
         self.img_logo = customtkinter.CTkImage(light_image=Image.open(os.path.join(assets_dir, "logo-r.png")),
                                                 dark_image=Image.open(os.path.join(assets_dir, "logo-r.png")),
@@ -171,8 +167,6 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
                                                       command=self.registrar_usuario)
         self.boton_registra.place(relx=0.345, rely=0.70)
 
-        # aqui termina lo sucio
-
         # Creo un frame donde van a ir todos los botones que estan en el lado izquierdo
         self.izq_frame = customtkinter.CTkFrame(self.ventana, corner_radius=15, fg_color=("red", "#333333"))
         self.izq_frame.grid(row=0, column=0, sticky="nsew", pady=10, padx=(10, 5))
@@ -262,8 +256,6 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
         self.der_scroll_act = customtkinter.CTkScrollableFrame(self.tabview.tab("Eventos"), width=280, height=400)
         self.der_scroll_act.place(relx=0.02, rely=0.02)
 
-
-
         # Frame encargado de buscar los destinos
         self.der_buscar = customtkinter.CTkFrame(master=self.ventana, corner_radius=15, fg_color="#333333")
         self.der_buscar.grid_columnconfigure(3, weight=1)
@@ -288,9 +280,6 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
         self.menu_opciones_cocina.set("Cocina")
         self.menu_opciones_cocina.place(relx=0.27, rely=0.15)
 
-        # Creo un menu de opciones pero ahora para los ingredientes
-        # Me falta obtenerlos desde el json con una funcion aparte asi no tengo que crear la lista desti_ing
-        #desti_ing = ['tomate', 'lechuga', 'salsa de soja', 'pescado', 'queso', 'helado', 'crema', 'cebolla', 'fideos']
         ingredientes = []
         for ingr in destinos_data:
             ingre = ingr["ingredientes"]
@@ -306,7 +295,6 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
         self.menu_opciones_ingre.set("Ingredientes")
 
         # Creo otro menu de opciones para establecer los rangos de precios por los que puedo filtrar
-        #destinos_preciomin = ["- $1000", "- $2000", "- $3000", "- $4000", "- $5000"]
         destinos_preciomin = ["1000", "2000", "3000", "4000", "5000"]
         self.menu_opciones_precio_min = customtkinter.CTkOptionMenu(master=self.der_buscar, values=destinos_preciomin,
                                                         dynamic_resizing=False,
@@ -314,7 +302,6 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
         self.menu_opciones_precio_min.place(relx=0.559, rely=0.125)
         self.menu_opciones_precio_min.set("Precio MIN")
 
-        #destinos_preciomax = ["$1000", "$2000", "$3000", "$4000", "$5000", "$5000-"]
         destinos_preciomax = ["1000", "2000", "3000", "4000", "5000"]
         self.menu_opciones_precio_max = customtkinter.CTkOptionMenu(master=self.der_buscar, values=destinos_preciomax,
                                                                 dynamic_resizing=False,
@@ -387,7 +374,6 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
         #self.der_buscar_mapa.set_tile_server("https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga")
         self.der_planificar_mapa.place(relx=0.025, rely=0.15)
 
-
         # Frame encargado de los reviews de los destinos
         self.der_review = customtkinter.CTkFrame(self.ventana, corner_radius=15, fg_color="#333333")
         self.der_review.grid_columnconfigure(1, weight=1)
@@ -401,7 +387,6 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
         self.der_scroll_revie.place(relx=0.025, rely=0.149)
 
         # Pongo los elementos para dejar un review
-
         self.lbl_res = customtkinter.CTkLabel(self.der_review, text="¿Desea dejar una reseña sobre un destino?",
                                               text_color="white", font=("Roboto Condensed", 15, "bold"))
         self.lbl_res.place(relx=0.53, rely=0.20)
@@ -414,8 +399,6 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
         self.entry_desac = customtkinter.CTkEntry(master=self.der_review, corner_radius=15,
                                                   width=145, fg_color="white", text_color="black", justify="center")
         self.entry_desac.place(relx=0.539, rely=0.37)
-        # En ese dest nom deberia ir el nombre del destino obtenido desde el frame de busqueda
-        # desde ese frame obtenes el nombre del destino y lo imprimis en el entry desabilitado
 
         estrellas = ['0', '1', '2', '3', '4', '5']
         self.menu_estre_revie = customtkinter.CTkOptionMenu(master=self.der_review, values=estrellas,
@@ -441,7 +424,6 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
                                                           font=("Roboto Condensed", 12),
                                                           width=30)
         btn_mostrar_coordenadas.place(relx=0.765, rely=0.82)
-
         # Selecciono el frame que quiero que se muestre al abrir la ventana
         self.mostrar_frame_por_nom("login")
         # Cargo los datos desde los json (esplorar y buscar y reviews)
@@ -474,7 +456,6 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
             self.izq_frame.grid_rowconfigure(5, weight=1)
         else:
             self.der_explorar.grid_forget()
-            #self.izq_frame.grid_forget()
         if nombre_frame == "buscar":
             self.izq_frame_inic.grid_forget()
             self.der_buscar.grid(row=0, column=1, sticky="nsew", pady=10, padx=(5, 10))
@@ -529,6 +510,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
             self.list_dest.append(destination["nombre"])
 
     def crea_tarj_desti(self, destination):
+        """Creo las tarjetas que van a ser almacenadas en el scrollbarFrame de los destinos"""
         # Creo un Frame para contener los datos del destino
         tarj_destinos = customtkinter.CTkFrame(self.der_scroll_dest, fg_color="white", corner_radius=10,
                                                width=250, height=100)
@@ -623,6 +605,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
         btn_mostrar_reviews.place(relx=0.66, rely=0.65)
 
     def cancelar_filtros(self):
+        """Cancelo la busqueda a traves de los filtros"""
         self.menu_opciones_cocina.set("Cocina")
         self.menu_opciones_ingre.set("Ingredientes")
         self.menu_opciones_precio_min.set("Precio MIN")
@@ -639,7 +622,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
             self.crea_tarj_desti(destination)
 
     def cancelar_busqueda(self):
-        """Funcion encargada de cargar los datos desde el json en la direccion 'json_dir'"""
+        """Cancelo la busqueda a traves del entry"""
         # Carga los datos desde el json
         with open(json_dir, "r", encoding="utf-8") as json_file:
             data = json.load(json_file)
@@ -652,6 +635,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
         self.entry_nom_busc.delete(0, tk.END)
 
     def aplicar_filtros(self):
+        """Obtengo los valores seleccionados en los filtros"""
         # Obtener los valores seleccionados en los menús desplegables y el campo de entrada
         destinos_filtrados = []
 
@@ -693,6 +677,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
                     self.der_buscar_mapa.set_position(coordenadas[0], coordenadas[1])
 
     def buscar_destinos_por_nombre(self):
+        """Busco los destinos que fueron ingresados en el entry"""
         nombre_buscado = self.entry_nom_busc.get().lower().capitalize()
 
         with open(json_dir, encoding="utf-8") as file:
@@ -715,7 +700,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
                     widget.destroy()
                 # Mostrar los destinos encontrados en tarjetas y en el mapa
                 for resultado in resultados:
-                    # Crear tarjeta y mostrar información (código de la tarjeta aquí...)
+                    # Crear tarjeta y mostrar información
                     self.crea_tarj_desti(resultado)
 
                     # Cargar la ubicación en el mapa
@@ -723,7 +708,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
                     self.der_buscar_mapa.set_position(coordenadas[0], coordenadas[1])
 
     def cargar_datos_json_en_reviews(self):
-        """Funcion encargada de cargar los datos """
+        """Funcion encargada de cargar los datos en el scrollbarFrame de Reviews"""
         # Cargar los datos desde el archivo JSON
         with open(json_rese, "r", encoding="utf-8") as json_file:
             data = json.load(json_file)
@@ -732,6 +717,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
             self.crear_tarj_reviews(destination)
 
     def crear_tarj_reviews(self, destination):
+        """Creo las tarjetas que van a ser utilizadas en los reviews"""
         # Creamos un Frame para contener los datos del destino en el frame que esta en Reviews
         tarj_reviews = customtkinter.CTkFrame(self.der_scroll_revie, fg_color="white", corner_radius=10,
                                               width=250, height=150)
@@ -765,6 +751,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
         lbl_califi_revie.place(relx=0.88, rely=0.12)
 
     def cargar_datos_json_en_actividades(self):
+        """Cargo los datos de los eventos que se van a realizar"""
         # Obtener la ruta absoluta del directorio actual del archivo Python
         current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -774,7 +761,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
             data_eventos = json.load(json_file)
 
         # Cargar los datos desde el archivo JSON de destinos
-        json_destinos = os.path.join(current_dir, "..", "data", "destinos.json")  # Reemplaza "tu_archivo.json" con el nombre correcto
+        json_destinos = os.path.join(current_dir, "..", "data", "destinos.json") 
         with open(json_destinos, "r", encoding="utf-8") as json_file:
             data_destinos = json.load(json_file)
 
@@ -791,6 +778,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
 
 
     def crear_tarj_acti(self, destinationn, rutas_imagenes, coordenadas_y_nombre):
+        """Creo las tarjetas que van a ser utilizadas en los eventos"""
         # Creamos un Frame para contener los datos del destino
         tarj_destinos = customtkinter.CTkFrame(self.der_scroll_act, fg_color="white", corner_radius=10,
                                                width=250, height=110)
@@ -846,10 +834,8 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
                     command=lambda coord=coorde_event, dire=direccion_event: self.show_coordinates_evento(coord, dire)
                 )
                 # Cargar la imagen y crear un label para mostrarla
-
                 imagen_path = os.path.join(direccion_actual, "..", "assets", ruta_imagen)
 
-                #ruta_img = ("../assets/" + str(ruta_imagen))
                 image = customtkinter.CTkImage(light_image=Image.open(imagen_path),
                                                dark_image=Image.open(imagen_path),
                                                size=(87, 87))
@@ -903,8 +889,6 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
 
         mensaje = destination.get('nombre')
         # Mostrar el messagebox
-        #messagebox.showinfo("Información del Restaurante", mensaje, icon='info', type='ok')
-        # Con este jueguito del entry hago que se active, imprima el nombre obtenido y se desactive
         self.entry_desac.configure(state="normal")
         self.mostrar_frame_revi()
         self.entry_desac.delete(0, tk.END)
@@ -930,7 +914,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
             self.crear_tarj_reviews(review)
 
     def guardar_resena(self):
-
+        """Funcion encargada de guardar las reseñas ingresadas"""
         reviews_destino = []
 
         mensaje = self.entry_desac.get()
@@ -945,7 +929,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
 
         nueva_resena = {
             "id": self.user_id_iniciado,
-            "username": self.user_iniciado,  # Puedes reemplazarlo con el nombre de usuario real
+            "username": self.user_iniciado,
             "destino": destino,
             "resena": resena,
             "calificacion": calificacion
@@ -981,6 +965,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
             self.crear_tarj_reviews(review)
 
     def cargar_usuarios(self):
+        """Cargar los usuarios a traves del json"""
         try:
             with open(json_usuarios, "r", encoding="utf-8") as file:
                 self.users = json.load(file)
@@ -988,12 +973,14 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
             self.users = []
 
     def verificar(self, username, password):
+        """Verificar si los datos son validos"""
         for user in self.users:
             if user["username"] == username and user["password"] == password:
                 return user["id"]
         return None
 
     def iniciar_sesion(self):
+        """Funcion encargada de iniciar sesion con los datos obtenidos"""
         username = self.entry_usuario_log.get().strip()
         password = self.entry_contra_log.get().strip()
 
@@ -1014,6 +1001,7 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
         self.entry_contra_log.delete(0, tk.END)
 
     def registrar_usuario(self):
+        """Funcion encargada de registrar un usuario"""
         username = self.entry_usuario_registra.get().strip()
         password = self.entry_contra_registra.get()
 
@@ -1039,10 +1027,12 @@ eficiente y organizada""", font=("Roboto Condensed", 20, "bold"))
         self.entry_contra_registra.delete(0, tk.END)
 
     def guardar_usuario(self):
+        """Funcion encargada de guardar los datos del usuario en el json"""
         with open(json_usuarios, "w", encoding="utf-8") as file:
             json.dump(self.users, file, indent=2)
 
     def cerrar_sesion(self):
+        """Funcion encargada de cerrar sesion cuando se presiona el boton"""
         self.izq_frame.grid_forget()
         self.der_explorar.grid_forget()
         self.der_buscar.grid_forget()
