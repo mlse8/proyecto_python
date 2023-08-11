@@ -1,0 +1,32 @@
+[
+  {
+    "id_destino": 5,
+    "nombre": "La Casona del Molino",
+    "evento": "Show Franco Barrionuevo",
+    "fecha": "2023-08-12T22:30:00"
+  },
+  {
+    "id_destino": 5,
+    "nombre": "La Casona del Molino",
+    "evento": "Show Jorge Rojas",
+    "fecha": "2023-08-18T23:00:00"
+  },
+  {
+    "id_destino": 5,
+    "nombre": "La Casona del Molino",
+    "evento": "Show Los Nocheros",
+    "fecha": "2023-08-19T23:00:00"
+  },
+  {
+    "id_destino": 3,
+    "nombre": "Mexico Lindo",
+    "evento": "Independencia de mexico",
+    "fecha": "2023-09-18T17:00:00"
+  },
+  {
+    "id_destino": 6,
+    "nombre": "Sir of the beer",
+    "evento": "Oktoberfest",
+    "fecha": "2023-09-20T18:00:00"
+  }
+]
