@@ -60,10 +60,6 @@ class App():
     """Clase principal encargada de vista de los metodos principales"""
     def __init__(self):
 
-        """logsign = Logsign()
-
-        logsign.cargar_usuarios()"""
-
         self.users = []
 
         self.ventana = customtkinter.CTk()
